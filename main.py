@@ -67,11 +67,21 @@ class MainWindow(QMainWindow):
 
         line_edit_layout = QHBoxLayout()
         self.search_button = QPushButton("Search")
-        self.search_button.setStyleSheet("background-color: lightgrey;")
+        self.search_button.setStyleSheet(
+            "background-color: lightgrey; padding: 5px;")
         self.search_button.clicked.connect(self.check_country)
 
-        line_edit_layout.addWidget(self.line_edit, 8)
-        line_edit_layout.addWidget(self.search_button, 1)
+        # Set fixed width for line_edit
+        self.line_edit.setFixedWidth(200)
+        # Set fixed width for search_button
+        self.search_button.setFixedWidth(100)
+
+        # Create the QHBoxLayout for line_edit and search_button
+        search_layout = QHBoxLayout()
+        search_layout.addStretch()
+        search_layout.addWidget(self.line_edit)
+        search_layout.addWidget(self.search_button)
+        search_layout.addStretch()
 
         self.flag_label = QLabel(f"National flag: {ask_for_input}")
         self.flag_label.setFont(QFont("Tahoma", 14))
@@ -105,8 +115,7 @@ class MainWindow(QMainWindow):
         self.fun_fact_label.setWordWrap(True)
 
         layout.addWidget(self.country_label)
-        layout.addLayout(line_edit_layout)
-        layout.addWidget(self.line_edit)
+        layout.addLayout(search_layout)
         layout.addWidget(self.flag_label)
         layout.addWidget(self.population_label)
         layout.addWidget(self.capital_label)
@@ -243,11 +252,12 @@ class MainWindow(QMainWindow):
         self.fun_fact_label.clear()
 
     def show_error_message(self, message):
-        error_message = QMessageBox()
-        error_message.setIcon(QMessageBox.Icon.Critical)
-        error_message.setWindowTitle("Error")
-        error_message.setText(message)
-        error_message.exec()
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Icon.Critical)
+        msg.setText("Error")
+        msg.setInformativeText(message)
+        msg.setWindowTitle("Error")
+        msg.exec()
 
 
 window = MainWindow()
