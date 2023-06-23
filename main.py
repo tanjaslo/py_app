@@ -12,6 +12,7 @@ ACCESS_KEY = "5FjXzbxyfmQYy75LDh8kNHL9oW_pmam4MznoaIlgLZ8"
 ALL_COUNTRIES_URL = "https://restcountries.com/v3.1/all"
 NAME_URL = "https://restcountries.com/v3.1/name/"
 label_style = "QLabel { background-color: rgba(0, 0, 0, 100); color: white; padding: 0 10px 0 10px; }"
+search_button_style = "QPushButton { background-color: lightgrey; padding: 5px; border-radius: 5px; }" "QPushButton:hover { background-color: darkgrey; }"
 ask_for_input = "Please enter a country name and press 'Search'/'Enter'"
 
 # You need one (and only one) QApplication instance per application.
@@ -67,8 +68,7 @@ class MainWindow(QMainWindow):
 
         line_edit_layout = QHBoxLayout()
         self.search_button = QPushButton("Search")
-        self.search_button.setStyleSheet(
-            "background-color: lightgrey; padding: 5px;")
+        self.search_button.setStyleSheet(search_button_style)
         self.search_button.clicked.connect(self.check_country)
 
         # Set fixed width for line_edit
