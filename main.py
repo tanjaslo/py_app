@@ -21,6 +21,7 @@ app = QApplication(sys.argv)
 
 
 class MainWindow(QMainWindow):
+    # In this code, we create a QMainWindow with a QLabel prompting the user to enter a value and a QLineEdit where the user can input text. When the user presses the Enter key, the returnPressed signal is emitted, which is connected to the display_input slot. In the display_input slot, the text entered by the user is retrieved using the text() method of the QLineEdit, and it is then displayed in the QLabel using the setText() method.
 
     def __init__(self):
         super().__init__()
@@ -30,7 +31,7 @@ class MainWindow(QMainWindow):
         # This is the same as the previous line. It's just a different way to call the super function.
 
         self.setWindowTitle("Country Information")
-        self.setGeometry(0, 0, 800, 600)  # Set an initial size
+        self.setGeometry(0, 0, 1024, 768)  # Set an initial size
 
         # Set background
         palette = self.palette()
@@ -96,7 +97,10 @@ class MainWindow(QMainWindow):
         self.fun_fact_label = QLabel(f"Fun fact: {ask_for_input}")
         self.fun_fact_label.setFont(QFont("Tahoma", 14))
         self.fun_fact_label.setStyleSheet(f"{label_style}")
-        # Enable opening links in a web browser
+        # Enable opening external links in a web browser
+        # The URL is inserted as a clickable link using HTML <a> tags.
+        # When the link is activated, the open_link function is called, which uses QDesktopServices.openUrl to open the URL in the default browser.
+
         self.fun_fact_label.setOpenExternalLinks(True)
         self.fun_fact_label.setWordWrap(True)
 
