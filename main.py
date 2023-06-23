@@ -1,6 +1,7 @@
 import sys
-from PyQt6.QtGui import QPalette, QColor, QLinearGradient, QBrush, QGuiApplication
-from PyQt6.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QWidget
+from PyQt6.QtCore import Qt
+from PyQt6.QtGui import QFont, QPalette, QColor, QBrush, QGuiApplication
+from PyQt6.QtWidgets import QApplication, QMainWindow, QWidget, QLabel, QLineEdit, QVBoxLayout, QHBoxLayout, QPushButton
 
 app = QApplication(sys.argv)
 
@@ -15,15 +16,6 @@ class MainWindow(QMainWindow):
 
         self.setWindowTitle("Country Information")
         self.setGeometry(0, 0, 800, 600)  # Set an initial size
-
-        # # Set background gradient
-        # gradient = QLinearGradient(0, 0, 0, self.height())
-        # gradient.setColorAt(0, QColor(0, 128, 0))
-        # gradient.setColorAt(1, QColor(200, 200, 200))
-        # palette = self.palette()
-        # palette.setBrush(QPalette.ColorGroup.Normal,
-        #                  QPalette.ColorRole.Window, QBrush(gradient))
-        # self.setPalette(palette)
 
         # Set background
         palette = self.palette()
@@ -40,9 +32,34 @@ class MainWindow(QMainWindow):
 
         layout = QVBoxLayout()
         widget = QWidget()
-
         widget.setLayout(layout)
         self.setCentralWidget(widget)
+
+        self.country_label = QLabel("Enter a country name: ")
+        self.country_label.setFont(QFont("Tahoma", 30))
+        self.country_label.setStyleSheet("QLabel { padding: 0 10px 0 10px; }")
+
+        # Set background color for country label
+        label_palette = self.country_label.palette()
+        label_palette.setColor(QPalette.ColorGroup.Normal,
+                               QPalette.ColorRole.WindowText, QColor(Qt.GlobalColor.white))
+        label_palette.setColor(QPalette.ColorGroup.Normal,
+                               QPalette.ColorRole.Window, QColor(0, 0, 0, 100))
+        self.country_label.setAutoFillBackground(True)
+        self.country_label.setPalette(label_palette)
+
+        self.line_edit = QLineEdit()
+
+        line_edit_layout = QHBoxLayout()
+        self.search_button = QPushButton("Search")
+        self.search_button.setStyleSheet("background-color: lightgrey;")
+
+        line_edit_layout.addWidget(self.line_edit, 8)
+        line_edit_layout.addWidget(self.search_button, 1)
+
+        layout.addWidget(self.country_label)
+        layout.addLayout(line_edit_layout)
+        layout.addWidget(self.line_edit)
 
 
 window = MainWindow()
