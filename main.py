@@ -21,9 +21,6 @@ app = QApplication(sys.argv)
 
 
 class MainWindow(QMainWindow):
-    # gradient = QLinearGradient(0, 0, 0, 800)
-    # gradient.setColorAt(0, QColor(255, 255, 255))  # Start color
-    # gradient.setColorAt(1, QColor(200, 200, 200))  # End color
 
     def __init__(self):
         super().__init__()
